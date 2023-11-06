@@ -1,19 +1,14 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 
 # Flaskオブジェクトの作成
 app = Flask(__name__)
 
-
-# 「/」へアクセスがあった場合に、"Hello world"の文字列を返す
 @app.route("/")
-def hello():
-    return "Hello world"
-
-
-# 「/index」へアクセスがあった場合に、「index.html」を返す
 @app.route("/index")
 def index():
-    return render_template("index.html")
+    name = request.args.get("name")
+    okyo = ["色不異空","空不異色","色即是空","空即是色"]
+    return render_template("index.html",name=name,okyo=okyo)
 
 
 if __name__ == "__main__":
