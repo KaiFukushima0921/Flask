@@ -1,4 +1,5 @@
 from flask import Flask,render_template,request
+from .models.models import OnegaiContent
 
 app = Flask(__name__)
 
@@ -6,15 +7,15 @@ app = Flask(__name__)
 @app.route("/index")
 def index():
     show_name = request.args.get("a")
-    okyo = ["色不異空","空不異色","色即是空","空即是色"]
-    return render_template("index.html",name=show_name,ok=okyo)
+    all_onegai = OnegaiContent.query.all()
+    return render_template("index.html", name = show_name, all_onegai = all_onegai)
 
 
 @app.route("/index", methods=["post"])
 def post():
     name = request.form["name2"]
-    okyo = ["色不異空", "空不異色", "色即是空", "空即是色"]
-    return render_template("index.html", name = name, okyo = okyo)
+    all_onegai = OnegaiContent.query.all()
+    return render_template("index.html", name = name, all_onegai = all_onegai)
 
 
 if __name__ == "__main__":
