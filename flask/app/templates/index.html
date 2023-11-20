@@ -3,6 +3,7 @@
     <head>
         <title>{{name}}</title>
     </head>
+    <a href="/logout">ログアウトする</a>
     <body>
     {%if name == "wolf" %}
     <h1>スペシャル{{name}}神社</h1>
@@ -11,10 +12,6 @@
     {%else%}
     <h1>只野神社</h1>
     {%endif%}
-    <form action="/index" method="post">
-        <input type="text" name="name2" placeholder="Enter name">
-        <input type="submit" value="Submit">
-    </form>
     <img src="/static/images/wolf.jpg" alt="wolf pic">
     <form action="/add" method="post">
         <input type="text" name="title" placeholder="title">
