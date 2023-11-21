@@ -17,7 +17,7 @@ def index():
         all_onegai = OnegaiContent.query.all()
         return render_template("index.html",name=name,all_onegai=all_onegai)
     else:
-        return redirect(url_for("top",status="logout"))
+        return redirect(url_for("top",current_status="logout"))
 
 
 @app.route("/add",methods=["post"])
@@ -60,9 +60,9 @@ def login():
             session["user_name"] = user_name
             return redirect(url_for("index"))
         else:
-            return redirect(url_for("top",status="wrong_password"))
+            return redirect(url_for("top",current_status="wrong_password"))
     else:
-        return redirect(url_for("top",status="user_notfound"))
+        return redirect(url_for("top",current_status="user_notfound"))
     
 
 @app.route("/registar",methods=["post"])
@@ -70,7 +70,7 @@ def registar():
     user_name = request.form["user_name"]
     user = User.query.filter_by(user_name=user_name).first()
     if user:
-        return redirect(url_for("newcomer",status="exist_user"))
+        return redirect(url_for("newcomer",current_status="exist_user"))
     else:
         password = request.form["password"]
         hashed_password = sha256((user_name + password + key.SALT).encode("utf-8")).hexdigest()
@@ -84,12 +84,12 @@ def registar():
 @app.route("/logout")
 def logout():
     session.pop("user_name", None)
-    return redirect(url_for("top",status="logout"))
+    return redirect(url_for("top",current_status="logout"))
 
 
 @app.route("/top")
 def top():
-    status = request.args.get("status")
+    status = request.args.get("current_status")
     return render_template("top.html",status=status)
 
 
