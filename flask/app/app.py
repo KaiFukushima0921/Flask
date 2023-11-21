@@ -41,7 +41,7 @@ def update():
 
 @app.route("/delete",methods=["post"])
 def delete():
-    id_list = request.form.getlist("delete")
+    id_list = request.form.getlist("hello")
     for id in id_list:
         content = OnegaiContent.query.filter_by(id=id).first()
         db_session.delete(content)

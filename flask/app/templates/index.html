@@ -29,7 +29,7 @@
         {%for onegai in all_onegai%}
         <div>
             <input type="radio" name="update" form="update" value={{onegai.id}}>
-            <input type="checkbox" name="delete" form="delete" value={{onegai.id}}>
+            <input type="checkbox" name="hello" form="delete" value={{onegai.id}}>
             {{onegai.title}}: {{onegai.body}} ({{onegai.date}})
         </div>
         {%endfor%}
